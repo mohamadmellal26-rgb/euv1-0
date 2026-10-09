@@ -21,7 +21,7 @@ interface GenerationResult {
   isError?: boolean;
 }
 
-const API_URL = 'http://localhost:8080';
+const API_URL = 'https://euv1-0.onrender.com';
 const API_KEY = '96fd6333c1305c283760466c22c149aae7f868b1dbf6ada2aae78a1444e3cc4c';
 
 export const Hero: React.FC = () => {

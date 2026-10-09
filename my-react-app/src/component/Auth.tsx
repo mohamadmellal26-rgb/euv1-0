@@ -27,7 +27,7 @@ export default function Auth() {
       : { full_name: name, email, password };
 
     try {
-      const response = await fetch(`http://localhost:8080${endpoint}`, {
+      const response = await fetch(`https://euv1-0.onrender.com${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
