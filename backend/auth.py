@@ -6,7 +6,7 @@ from sqlalchemy import create_engine, Column, Integer, String, Boolean, DateTime
 from sqlalchemy.orm import declarative_base, sessionmaker, Session
 from pydantic import BaseModel, EmailStr
 
-# 1. إعداد داتابيز SQLite
+# 1. إعداد قاعدة البيانات SQLite
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./app_data.db")
 
 engine = create_engine(
@@ -65,10 +65,9 @@ class UserResponse(BaseModel):
     class Config:
         from_attributes = True
 
-# 4. التشفير المباشر بـ bcrypt (حل المشكلة)
+# 4. التشفير والمصادقة
 
 def hash_password(password: str) -> str:
-    # تحويل النص لـ bytes مع اقتطاع ما يتجاوز 72 بايت لتفادي حدود bcrypt
     pwd_bytes = password.encode('utf-8')[:72]
     salt = bcrypt.gensalt()
     return bcrypt.hashpw(pwd_bytes, salt).decode('utf-8')

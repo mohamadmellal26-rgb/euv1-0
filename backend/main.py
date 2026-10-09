@@ -7,8 +7,6 @@ from typing import Optional
 from dotenv import load_dotenv
 from sqlalchemy.orm import Session
 
-# استيراد من الخدمات المنفصلة
-from ai_service import generate_react_code
 from auth import (
     get_db, 
     register_user, 
@@ -25,7 +23,7 @@ PORT = int(os.getenv("PORT", 8080))
 SECRET_API_KEY = os.getenv("SECRET_API_KEY", "my_super_secret_token_12345")
 ALLOWED_ORIGINS = [origin.strip() for origin in os.getenv("ALLOWED_ORIGINS", "").split(",") if origin.strip()]
 
-app = FastAPI(title="Fast CPU AI Code Generator Server")
+app = FastAPI(title="Auth & Database Backend Server")
 
 app.add_middleware(
     CORSMiddleware,
@@ -39,9 +37,11 @@ api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
 
 def verify_api_key(api_key: str = Depends(api_key_header)):
     if SECRET_API_KEY and api_key != SECRET_API_KEY:
-        raise HTTPException(status_code=403, detail="Access Denied")
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, 
+            detail="Invalid or missing API Key"
+        )
     return api_key
-
 
 class FeedbackPayload(BaseModel):
     prompt: str
@@ -50,9 +50,11 @@ class FeedbackPayload(BaseModel):
     feedback_notes: Optional[str] = None
     user_email: Optional[str] = None
 
+# ----------------- فحص صحة السيرفر -----------------
 
-class GeneratePayload(BaseModel):
-    prompt: str
+@app.get("/")
+def health_check():
+    return {"status": "online", "message": "Backend server is running successfully"}
 
 # ----------------- مسارات المصادقة (Auth Routes) -----------------
 
@@ -83,11 +85,10 @@ def signin(payload: UserSignIn, db: Session = Depends(get_db)):
         }
     }
 
-# ----------------- مسارات الذكاء الاصطناعي والتغذية الراجعة -----------------
+# ----------------- مسار التغذية الراجعة -----------------
 
 @app.post("/feedback", dependencies=[Depends(verify_api_key)])
 def submit_feedback(payload: FeedbackPayload, db: Session = Depends(get_db)):
-    # حفظ الملاحظة مباشرة في الداتابيز
     new_feedback = FeedbackModel(
         user_email=payload.user_email,
         prompt=payload.prompt,
@@ -99,15 +100,6 @@ def submit_feedback(payload: FeedbackPayload, db: Session = Depends(get_db)):
     db.commit()
     return {"status": "success", "message": "Feedback saved to database"}
 
-
-@app.post("/generate", dependencies=[Depends(verify_api_key)])
-def generate_code(payload: GeneratePayload):
-    if not payload.prompt.strip():
-        raise HTTPException(status_code=400, detail="Prompt is required")
-
-    return generate_react_code(payload.prompt)
-
-
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=PORT, reload=True)
+    uvicorn.run(app, host="0.0.0.0", port=PORT)
