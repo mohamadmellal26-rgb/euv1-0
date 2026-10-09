@@ -1,0 +1,74 @@
+/* الحاوية الرئيسية للقسم */
+.cta-container {
+  width: 100%;
+  height: 100vh;
+  background-color: #ffffff;
+  padding: 100px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  box-sizing: border-box;
+}
+
+/* محتوى القسم متمركز مع زيادة العرض */
+.cta-content {
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+/* العنوان الرئيسي (تم تكبيره قليلاً) */
+.cta-title {
+  font-size: 48px; /* تم التعديل من 42px إلى 48px */
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+/* الوصف التوضيحي (تم تكبيره قليلاً) */
+.cta-description {
+  font-size: 18px; /* تم التعديل من 16px إلى 18px */
+  color: #64748b;
+  margin: 0 0 8px 0;
+  line-height: 1.5;
+}
+
+/* زر البدء (Get Started) */
+.cta-button {
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 9999px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+}
+
+.cta-button:hover {
+  background-color: #1e293b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button:active {
+  transform: translateY(0);
+}
+
+/* استجابة للشاشات الصغيرة */
+@media (max-width: 640px) {
+  .cta-title {
+    font-size: 36px;
+  }
+  .cta-description {
+    font-size: 15px;
+  }
+}

@@ -1,0 +1,202 @@
+/* إعدادات عامة للهيدر */
+.site-header {
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 1px solid #f0f0f0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  box-sizing: border-box;
+}
+
+.header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* الشعار */
+.header-logo .logo-btn {
+  display: flex;
+  align-items: center;
+  color: #000000;
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+}
+
+/* قائمة التنقل في المنتصف */
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-item-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nav-item {
+  color: #4b5563;
+  font-size: 15px;
+  font-weight: 400;
+  transition: color 0.2s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  outline: none;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  color: #111827;
+}
+
+.nav-item.dropdown {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.arrow {
+  font-size: 11px;
+  color: #6b7280;
+  transition: transform 0.2s ease;
+}
+
+.nav-item.active .arrow {
+  transform: rotate(180deg);
+}
+
+/* القوائم المنبثقة (Dropdown Menus) */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 8px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  padding: 6px 0;
+  min-width: 190px;
+  z-index: 100;
+  animation: dropdownFadeIn 0.15s ease-out;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-item {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: block;
+  padding: 8px 16px;
+  color: #374151;
+  font-size: 14px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+/* أزرار المصادقة وحاوية الملف الشخصي */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-signin,
+.btn-signup {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-signin {
+  background-color: #ffffff;
+  color: #111827;
+  border: 1px solid #e5e7eb;
+}
+
+.btn-signin:hover {
+  background-color: #f9fafb;
+  border-color: #d1d5db;
+}
+
+.btn-signup {
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #000000;
+}
+
+.btn-signup:hover {
+  background-color: #1f2937;
+}
+
+/* قائمة ملف المستخدم عند تسجيل الدخول */
+.user-profile-menu {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #f8fafc;
+  padding: 4px 6px 4px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.user-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+}
+
+.btn-logout {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 6px 14px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.btn-logout:hover {
+  color: #dc2626;
+  border-color: #fca5a5;
+  background-color: #fef2f2;
+}
+
+.btn-logout:active {
+  transform: scale(0.98);
+}

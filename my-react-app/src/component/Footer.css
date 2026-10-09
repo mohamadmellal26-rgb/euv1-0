@@ -1,0 +1,84 @@
+/* الحاوية الرئيسية للفوتر */
+.footer-container {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 60px 24px;
+  border-top: 1px solid #f1f5f9;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  box-sizing: border-box;
+}
+
+/* حاوية الترتيب الداخلي */
+.footer-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+/* شعار الموقع (v0) */
+.footer-brand {
+  display: flex;
+  align-items: center;
+}
+
+.footer-logo {
+  font-size: 20px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+/* شبكة أعمدة الروابط */
+.footer-links-grid {
+  display: flex;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .footer-links-grid {
+    gap: 40px;
+  }
+}
+
+/* تصميم العمود الواحد */
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 120px;
+}
+
+/* عنوان القسم داخل الفوتر */
+.footer-heading {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+/* قائمة الروابط */
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* روابط الفوتر */
+.footer-list li a {
+  font-size: 14px;
+  color: #64748b;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-list li a:hover {
+  color: #0f172a;
+}
