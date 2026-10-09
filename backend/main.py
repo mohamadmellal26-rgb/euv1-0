@@ -21,14 +21,26 @@ load_dotenv()
 
 PORT = int(os.getenv("PORT", 8080))
 SECRET_API_KEY = os.getenv("SECRET_API_KEY", "96fd6333c1305c283760466c22c149aae7f868b1dbf6ada2aae78a1444e3cc4c")
-ALLOWED_ORIGINS = [origin.strip() for origin in os.getenv("ALLOWED_ORIGINS", "").split(",") if origin.strip()]
+
+# تحديد المصادر المسموحة بدقة لدعم Vercel والتطوير المحلي
+raw_origins = os.getenv("ALLOWED_ORIGINS", "")
+parsed_origins = [origin.strip() for origin in raw_origins.split(",") if origin.strip()]
+
+default_origins = [
+    "https://euv-1-0.vercel.app",
+    "http://localhost:3000",
+    "http://localhost:5173",
+]
+
+origins = parsed_origins if parsed_origins else default_origins
 
 app = FastAPI(title="Auth & Database Backend Server")
 
+# إصلاح إعدادات CORS لمنع خطأ 400 Bad Request
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS if ALLOWED_ORIGINS else ["*"],
-    allow_credentials=True,
+    allow_origins=origins if origins else ["*"],
+    allow_credentials=True if origins and origins != ["*"] else False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
