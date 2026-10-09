@@ -20,7 +20,7 @@ from auth import (
 load_dotenv()
 
 PORT = int(os.getenv("PORT", 8080))
-SECRET_API_KEY = os.getenv("SECRET_API_KEY", "my_super_secret_token_12345")
+SECRET_API_KEY = os.getenv("SECRET_API_KEY", "96fd6333c1305c283760466c22c149aae7f868b1dbf6ada2aae78a1444e3cc4c")
 ALLOWED_ORIGINS = [origin.strip() for origin in os.getenv("ALLOWED_ORIGINS", "").split(",") if origin.strip()]
 
 app = FastAPI(title="Auth & Database Backend Server")
